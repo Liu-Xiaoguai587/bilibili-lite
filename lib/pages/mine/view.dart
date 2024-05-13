@@ -3,24 +3,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:bilibili_lite/models/user_status.dart';
-import 'package:flutter/widgets.dart';
+import 'package:bilibili_lite/models/simple_widget.dart';
 
 class MinePage extends StatelessWidget {
   const MinePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var iconWithTextV = ({required Widget icon, required Widget text}) =>
-        Column(children: [icon, const Divider(height: 5), text]);
-    var iconWithTextH =
-        ({required Widget icon, required Widget text}) => Row(children: [
-              icon,
-              const VerticalDivider(
-                width: 20,
-              ),
-              text
-            ]);
-
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
       appBar: AppBar(
@@ -28,19 +17,11 @@ class MinePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.person),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.person),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.person),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.person),
+            icon: Image.asset(
+              "assets/icons/mine/dark_mode.png",
+              width: 25,
+              height: 25,
+            ),
           ),
         ],
       ),
@@ -54,16 +35,13 @@ class MinePage extends StatelessWidget {
               child: _selfInfoCard(),
             ),
             Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "空间  〉",
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  ),
-                ))
+              alignment: Alignment.centerRight,
+              // child: simpleText("空间  〉", color: Colors.grey, size: 20),
+              child: TextButton(
+                onPressed: () {},
+                child: simpleText("空间  〉", color: Colors.grey),
+              ),
+            )
           ]),
           // 动态&关注&粉丝 数量
           Padding(
@@ -80,10 +58,7 @@ class MinePage extends StatelessWidget {
                   width: 30,
                   height: 30,
                 ),
-                text: Text(
-                  "离线缓存",
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
-                ),
+                text: simpleText("离线缓存", size: 12, color: Colors.grey.shade800),
               ),
               iconWithTextV(
                 icon: Image.asset(
@@ -91,10 +66,7 @@ class MinePage extends StatelessWidget {
                   width: 30,
                   height: 30,
                 ),
-                text: Text(
-                  "历史记录",
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
-                ),
+                text: simpleText("历史记录", size: 12, color: Colors.grey.shade800),
               ),
               iconWithTextV(
                 icon: Image.asset(
@@ -102,10 +74,7 @@ class MinePage extends StatelessWidget {
                   width: 30,
                   height: 30,
                 ),
-                text: Text(
-                  "我的收藏",
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
-                ),
+                text: simpleText("我的收藏", size: 12, color: Colors.grey.shade800),
               ),
               iconWithTextV(
                 //icon: Image.asset("assets/icons/later.png"),
@@ -114,24 +83,15 @@ class MinePage extends StatelessWidget {
                   width: 30,
                   height: 30,
                 ),
-                text: Text(
-                  "稍后再看",
-                  style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
-                ),
+                text: simpleText("稍后再看", size: 12, color: Colors.grey.shade800),
               ),
             ],
           ),
           // 更多服务
           const Divider(height: 20, color: Color(0xFFFFFFFF)),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 15),
-            child: Text(
-              "更多服务",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: simpleText("更多服务", size: 17, isBold: true),
           ),
           // 更多服务下的选项
           const Divider(height: 20, color: Color(0xFFFFFFFF)),
@@ -145,6 +105,7 @@ class MinePage extends StatelessWidget {
                   height: 20,
                 ),
                 text: const Text("设置"),
+                divide: 20,
               ),
             ]),
           ),
@@ -162,14 +123,8 @@ class MinePage extends StatelessWidget {
     var customText = (String type) => (int quantities) {
           return Column(
             children: [
-              Text(
-                "$quantities",
-                style: const TextStyle(fontSize: 15, color: Colors.black),
-              ),
-              Text(
-                type,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-              ),
+              simpleText(quantities.toString(), size: 15, color: Colors.black),
+              simpleText(type, size: 12, color: Colors.grey),
             ],
           );
         };
@@ -220,20 +175,14 @@ class MinePage extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 10, left: 15),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "真的锡兰Ceylan",
-                    style: TextStyle(fontSize: 17),
-                  ),
-                  UserStatus(status: 1),
-                  Text(
-                    "B币: 0.0    硬币: 172",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
+                  simpleText("真的锡兰Ceylan", size: 17),
+                  const UserStatus(status: 1),
+                  simpleText("B币0.0    硬币: 172", size: 12, color: Colors.grey),
                 ],
               ),
             ),
