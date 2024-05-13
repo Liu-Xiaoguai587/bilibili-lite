@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
       length: homeTabs.length,
       child: Scaffold(
         appBar: AppBar(
+            backgroundColor: const Color(0xFFFFFFFF),
             shape: const Border(
                 bottom: BorderSide(color: Colors.grey, width: 0.1)),
             leading: IconButton(
@@ -51,7 +52,11 @@ class HomePage extends StatelessWidget {
                   //TODO
                   //go to message
                 },
-                icon: CustomIcon("assets/icons/email.png"),
+                icon: Image.asset(
+                  "assets/icons/email.png",
+                  width: 25,
+                  height: 25,
+                ),
                 // icon: const Icon(Icons.email),
               )
             ],
@@ -66,32 +71,6 @@ class HomePage extends StatelessWidget {
             )),
         body: TabBarView(
           children: homeTabs.values.toList(),
-        ),
-        bottomNavigationBar: NavigationBar(
-          surfaceTintColor: Colors.white,
-          height: 60,
-          //labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          destinations: [
-            NavigationDestination(
-              // icon: Icon(Icons.home),
-              // icon: ImageIcon(AssetImage("assets/images/bilibili-line.png")),
-              //icon: Image.asset(
-              //  "assets/images/bilibili-line.png",
-              //  width: 25,
-              //  height: 25,
-              //),
-              icon: CustomIcon("assets/icons/home.png"),
-              label: "首页",
-            ),
-            NavigationDestination(
-              icon: CustomIcon("assets/icons/windmill.png"),
-              label: "动态",
-            ),
-            NavigationDestination(
-              icon: CustomIcon("assets/icons/bilibili-line.png"),
-              label: "我的",
-            ),
-          ],
         ),
       ),
     );

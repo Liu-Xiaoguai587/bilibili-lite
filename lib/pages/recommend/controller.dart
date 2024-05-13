@@ -1,8 +1,9 @@
 //import 'package:dio/dio.dart';
 import 'package:bilibili_lite/models/video_item.dart';
 import 'package:bilibili_lite/services/http.dart';
+import 'package:get/get.dart';
 
-class RecommendController {
+class RecommendController extends GetxController {
   // List<VideoItem>? videoItem;
   final videoItem = <VideoItem>[];
   HttpGetter httpGetter = HttpGetter();
@@ -34,8 +35,5 @@ class RecommendController {
       videoItem.add(VideoItem.fromAPI(updateItems.data['data']['item'][i]));
     }
     currentPage += 1;
-    //print("current Page = $currentPage");
-    //print("show size = $showSize");
-    //print("list length = ${videoItem.length}");
   }
 }
