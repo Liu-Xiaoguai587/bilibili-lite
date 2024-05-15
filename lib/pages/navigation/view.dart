@@ -16,7 +16,7 @@ class _NavigationState extends State<Navigation> {
   final _pageOption = [
     const HomePage(),
     const DynamicPage(),
-    const MinePage(),
+    MinePage(),
   ];
 
   @override

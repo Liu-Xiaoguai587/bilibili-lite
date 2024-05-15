@@ -60,7 +60,6 @@ class _VideoListState extends State<RecommendTab> {
                   //TODO
                   return Text("Err: ${snapshot.error}");
                 } else {
-                  print("future builder");
                   return VideoList();
                 }
               } else {

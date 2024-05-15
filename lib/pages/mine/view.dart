@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_function_declarations_over_variables
 
+import 'package:bilibili_lite/pages/mine/controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bilibili_lite/models/user_status.dart';
 import 'package:bilibili_lite/models/simple_widget.dart';
+import 'package:get/get.dart';
 
 class MinePage extends StatelessWidget {
-  const MinePage({super.key});
+  MinePage({super.key});
+  final controller = Get.put(MinePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +31,25 @@ class MinePage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //个人信息卡
-          Stack(children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: _selfInfoCard(),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              // child: simpleText("空间  〉", color: Colors.grey, size: 20),
-              child: TextButton(
-                onPressed: () {},
-                child: simpleText("空间  〉", color: Colors.grey),
+          // 个人信息卡
+          // 点击事件
+          GestureDetector(
+            child: Stack(children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: _selfInfoCard(),
               ),
-            )
-          ]),
+              Align(
+                alignment: Alignment.centerRight,
+                // child: simpleText("空间  〉", color: Colors.grey, size: 20),
+                child: TextButton(
+                  onPressed: () {},
+                  child: simpleText("空间  〉", color: Colors.grey),
+                ),
+              )
+            ]),
+            onTap: controller.selfInfoCardOnTap,
+          ),
           // 动态&关注&粉丝 数量
           Padding(
             padding: const EdgeInsets.only(top: 5, bottom: 30),
