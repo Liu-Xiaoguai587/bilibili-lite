@@ -34,6 +34,7 @@ class MinePage extends StatelessWidget {
           // 个人信息卡
           // 点击事件
           GestureDetector(
+            onTap: controller.selfInfoCardOnTap,
             child: Stack(children: [
               Align(
                 alignment: Alignment.centerLeft,
@@ -48,7 +49,6 @@ class MinePage extends StatelessWidget {
                 ),
               )
             ]),
-            onTap: controller.selfInfoCardOnTap,
           ),
           // 动态&关注&粉丝 数量
           Padding(

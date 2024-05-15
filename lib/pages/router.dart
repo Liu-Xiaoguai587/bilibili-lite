@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 //import './home/view.dart';
 import './navigation/view.dart';
+import './webview/view.dart';
 
 class Routs {
   static final List<GetPage<dynamic>> getPage = [
@@ -12,6 +13,7 @@ class Routs {
       page: () => const LoginPage(),
       transition: Transition.native,
     ),
+    GetPage(name: '/web', page: () => const WebViewPage()),
   ];
 }
 

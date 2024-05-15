@@ -1,4 +1,8 @@
-import 'dart:ffi';
+/***************************************************/
+/*                                                 */
+/*                    已经弃用                     */
+/*                                                 */
+/***************************************************/
 
 import 'package:bilibili_lite/models/simple_widget.dart';
 import 'package:flutter/material.dart';
