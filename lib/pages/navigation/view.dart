@@ -1,3 +1,4 @@
+import 'package:bilibili_lite/pages/DEBUG.dart';
 import 'package:flutter/material.dart';
 
 import '../home/view.dart';
@@ -47,6 +48,11 @@ class _NavigationState extends State<Navigation> {
             _selectedIndex = value;
           });
         },
+      ),
+      // DEBUG
+      floatingActionButton: ElevatedButton(
+        onPressed: Debug.debug(),
+        child: const Icon(Icons.computer),
       ),
     );
   }

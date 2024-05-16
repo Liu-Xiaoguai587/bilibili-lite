@@ -188,8 +188,28 @@ class MinePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   simpleText("真的锡兰Ceylan", size: 17),
+                  //Obx(() {
+                  //  if (controller.name != null) {
+                  //    // return simpleText(controller.name!.value, size: 17);
+                  //    return simpleText("真的锡兰Ceylan", size: 17);
+                  //  } else {
+                  //    return simpleText("真的锡兰Ceylan", size: 17);
+                  //  }
+                  //}),
                   const UserStatus(status: 1),
-                  simpleText("B币0.0    硬币: 172", size: 12, color: Colors.grey),
+                  // simpleText("B币0.0    硬币: 172", size: 12, color: Colors.grey),
+                  //Obx(() {
+                  //  if (controller.bcoinBalance != null &&
+                  //      controller.money != null) {
+                  //    return const Text("");
+                  //  } else {
+                  //    return simpleText(
+                  //      "B币: ${controller.bcoinBalance}    硬币: ${controller.money}",
+                  //      size: 12,
+                  //      color: Colors.grey,
+                  //    );
+                  //  }
+                  //})
                 ],
               ),
             ),
