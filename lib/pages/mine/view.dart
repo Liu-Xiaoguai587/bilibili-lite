@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_function_declarations_over_variables
 
 import 'package:bilibili_lite/pages/mine/controller.dart';
+import 'package:bilibili_lite/services/cookies.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bilibili_lite/models/user_status.dart';
@@ -105,14 +106,17 @@ class MinePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),
             child: Column(children: [
-              iconWithTextH(
-                icon: Image.asset(
-                  "assets/icons/mine/setting.png",
-                  width: 20,
-                  height: 20,
+              GestureDetector(
+                onTap: () => Get.toNamed('/setting'),
+                child: iconWithTextH(
+                  icon: Image.asset(
+                    "assets/icons/mine/setting.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                  text: const Text("设置"),
+                  divide: 20,
                 ),
-                text: const Text("设置"),
-                divide: 20,
               ),
             ]),
           ),
@@ -176,10 +180,21 @@ class MinePage extends StatelessWidget {
             ClipOval(
               child: SizedBox.fromSize(
                 size: const Size.fromRadius(35),
-                child: Image.asset(
-                  "assets/images/avater.jpg",
-                  fit: BoxFit.cover,
-                ),
+                // 判断是否登录
+                // 登录则http请求网络头像,否则默认使用本地头像
+                child: () {
+                  if (Cookies.loginStatus == true) {
+                    return Image.network(
+                      controller.face.value,
+                      fit: BoxFit.cover,
+                    );
+                  } else {
+                    return Image.asset(
+                      "assets/images/avater.jpg",
+                      fit: BoxFit.cover,
+                    );
+                  }
+                }(),
               ),
             ),
             Padding(
@@ -187,29 +202,13 @@ class MinePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  simpleText("真的锡兰Ceylan", size: 17),
-                  //Obx(() {
-                  //  if (controller.name != null) {
-                  //    // return simpleText(controller.name!.value, size: 17);
-                  //    return simpleText("真的锡兰Ceylan", size: 17);
-                  //  } else {
-                  //    return simpleText("真的锡兰Ceylan", size: 17);
-                  //  }
-                  //}),
+                  // simpleText("真的锡兰Ceylan", size: 17),
+                  Obx(() => simpleText(controller.name.value, size: 17)),
                   const UserStatus(status: 1),
                   // simpleText("B币0.0    硬币: 172", size: 12, color: Colors.grey),
-                  //Obx(() {
-                  //  if (controller.bcoinBalance != null &&
-                  //      controller.money != null) {
-                  //    return const Text("");
-                  //  } else {
-                  //    return simpleText(
-                  //      "B币: ${controller.bcoinBalance}    硬币: ${controller.money}",
-                  //      size: 12,
-                  //      color: Colors.grey,
-                  //    );
-                  //  }
-                  //})
+                  Obx(() => simpleText(
+                      "B币: ${controller.bcoinBalance}    硬币: ${controller.money}",
+                      color: Colors.grey)),
                 ],
               ),
             ),

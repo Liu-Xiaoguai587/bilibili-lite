@@ -1,6 +1,7 @@
+import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-class Cookies {
+class Cookies extends GetxController {
   static String? sessdata;
   // bili_jct
   static String? csrf;

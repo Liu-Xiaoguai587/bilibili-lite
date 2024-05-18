@@ -1,4 +1,3 @@
-import 'package:bilibili_lite/pages/DEBUG.dart';
 import 'package:bilibili_lite/services/http.dart';
 import 'package:get/get.dart';
 
@@ -8,20 +7,20 @@ class MinePageController extends GetxController {
   final http = HttpGetter();
   //RxBool isLogin = false.obs;
 
-  RxString? name = ''.obs;
-  RxString? face = ''.obs;
+  RxString name = "请登录".obs;
+  RxString face = "".obs;
 
   // 硬币数
-  RxInt? money = 0.obs;
+  RxString money = "-".obs;
   // B币
-  RxInt? bcoinBalance = 0.obs;
+  RxString bcoinBalance = "-".obs;
 
   // 动态数
-  RxInt? dynamicCount = 0.obs;
+  RxString dynamicCount = "-".obs;
   // 关注数
-  RxInt? following = 0.obs;
+  RxString following = "-".obs;
   // 粉丝数
-  RxInt? follower = 0.obs;
+  RxString follower = "-".obs;
 
   @override
   void onInit() async {
@@ -33,18 +32,18 @@ class MinePageController extends GetxController {
       // print Error message
       return;
     }
-    print(interface);
+    //print(interface);
 
-    name?.value = interface['data']['uname'];
-    print(interface['data']['uname']);
-    print(name);
-    face?.value = interface['data']['face'];
-    money?.value = interface['data']['money'];
-    bcoinBalance?.value = interface['data']['wallet']['bcoin_balance'];
+    name.value = interface['data']['uname'];
+    face.value = interface['data']['face'];
 
-    dynamicCount?.value = interface['subdata']['danamic_count'];
-    follower?.value = interface['subdata']['follower'];
-    following?.value = interface['subdata']['following'];
+    money.value = interface['data']['money'].toString();
+    bcoinBalance.value =
+        interface['data']['wallet']['bcoin_balance'].toString();
+
+    dynamicCount.value = interface['subdata']['danamic_count'].toString();
+    follower.value = interface['subdata']['follower'].toString();
+    following.value = interface['subdata']['following'].toString();
   }
 
   Future initInterface() async {}
